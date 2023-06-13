@@ -26,8 +26,6 @@ class TextSearcher {
     _init(fileContents) {
         // TODO -- fill in implementation
         this.tokenizer = new TextTokenizer(fileContents, /\b([\w']+)\b/);
-
-        // this.fileContents = fileContents
     }
 
     /**
@@ -42,16 +40,18 @@ class TextSearcher {
         // TODO -- fill in implementation
         let results = [];
         let wordContextBuffer = [];
-        // let tokenContextBuffer = [];
 
         while (this.tokenizer.hasNext()) {
             let token = this.tokenizer.next();
 
             if (!this.tokenizer.isWord(token)) { continue; }
 
+            if (wordContextBuffer.length > contextWords) {
+                wordContextBuffer.shift();
+            }
+
             if (token == queryWord) {
                 results.push(token);
-                break;
             }
         }
 

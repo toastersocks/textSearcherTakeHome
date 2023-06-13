@@ -7,7 +7,7 @@ async function initTests() {
     let passCounter = 0;
 
     if (await runTest(testOneHitNoContext)) passCounter++;
-    // if (await runTest(testMultipleHitsNoContext)) passCounter++;
+    if (await runTest(testMultipleHitsNoContext)) passCounter++;
     // if (await runTest(testBasicSearch)) passCounter++;
     // if (await runTest(testBasicMoreContext)) passCounter++;
 

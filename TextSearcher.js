@@ -24,8 +24,7 @@ class TextSearcher {
      *  this class to implement search efficiently.
      */
     _init(fileContents) {
-        // TODO -- fill in implementation
-        this.tokenizer = new TextTokenizer(fileContents, /\b([\w']+)\b/);
+        this.data = fileContents
     }
 
     /**
@@ -36,26 +35,14 @@ class TextSearcher {
      *
      * @return One context string for each time the query word appears in the file.
      */
+
     search(queryWord, contextWords) {
-        // TODO -- fill in implementation
-        let results = [];
-        let wordContextBuffer = [];
+        let escapedQueryWord = queryWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        let regexString = `([\\w']+\\W+){${contextWords}}(${escapedQueryWord})(\\W+[\\w']+){${contextWords}}`
 
-        while (this.tokenizer.hasNext()) {
-            let token = this.tokenizer.next();
+        let regex = RegExp(regexString, 'gim');
 
-            if (!this.tokenizer.isWord(token)) { continue; }
-
-            if (wordContextBuffer.length > contextWords) {
-                wordContextBuffer.shift();
-            }
-
-            if (token == queryWord) {
-                results.push(token);
-            }
-        }
-
-        return results;
+        return this.data.match(regex) ?? [];
     }
 }
 

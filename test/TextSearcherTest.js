@@ -8,8 +8,8 @@ async function initTests() {
 
     if (await runTest(testOneHitNoContext)) passCounter++;
     if (await runTest(testMultipleHitsNoContext)) passCounter++;
-    // if (await runTest(testBasicSearch)) passCounter++;
-    // if (await runTest(testBasicMoreContext)) passCounter++;
+    if (await runTest(testBasicSearch)) passCounter++;
+    if (await runTest(testBasicMoreContext)) passCounter++;
 
     // if (await runTest(testApostropheQuery)) passCounter++;
     // if (await runTest(testNumericQuery)) passCounter++;
